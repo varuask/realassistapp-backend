@@ -10,10 +10,11 @@ const prepareGraphData = (data) => {
 
 exports.burglaryData = async (req, res, next) => {
   try {
-    const url = constants.baseUrl;
+    const state = req.query.state;
+    const url = `${constants.baseUrl}${state}/all`;
     const params = {
-      from: constants.from,
-      to: constants.to,
+      from: req.query.from,
+      to: req.query.to,
       API_KEY: process.env.API_KEY,
     };
     const response = await axios.get(url, { params });
